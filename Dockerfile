@@ -5,12 +5,12 @@ MAINTAINER Parnell Springmeyer <parnell@plumlife.com>
 # Update our sources
 RUN apt-get update && apt-get install -y \
     gcc-arm-linux-gnueabi \
-    g++-arm-linux-gnueabi
+    g++-arm-linux-gnueabi \
     gcc \
     g++ \
     git \
     curl \
-    libssl-dev
+    libssl-dev \
     autoconf \
     make
 
@@ -47,4 +47,4 @@ RUN cd otp && make install clean
 # Build the ARM version now
 RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf --without-odbc
 RUN cd otp && ./otp_build boot -a
-RUN cd otp && ./otp_build release -a /opt/arm/erlang
+RUN cd otp && ./otp_build release -a /opt/arm/lib/erlang
