@@ -5,9 +5,12 @@ MAINTAINER Parnell Springmeyer <parnell@plumlife.com>
 # Update our sources
 RUN apt-get update && apt-get install -y \
     gcc-arm-linux-gnueabi \
+    g++-arm-linux-gnueabi
     gcc \
+    g++ \
     git \
     curl \
+    libssl-dev
     autoconf \
     make
 

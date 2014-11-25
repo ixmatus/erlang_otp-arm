@@ -15,5 +15,3 @@ cd ../
 cd /opt/arm/openssl-1.0.1j
 ./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/opt/arm shared os/compiler:arm-none-linux-gnueabi
 make install
-make clean
-./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/usr/local shared os/compiler:gcc
