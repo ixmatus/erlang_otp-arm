@@ -1,0 +1,17 @@
+#!/bin/bash
+export CROSS=arm-linux-gnueabi
+export CC=${CROSS}-gcc
+export LD=${CROSS}-ld
+export AS=${CROSS}-as
+export AR=${CROSS}-ar
+
+echo "Configuring and making libncurses"
+cd /opt/arm/ncurses-5.9
+./configure arm-linux --target=arm-linux --host=x86_64-linux-gnu --with-build-cc=gcc --prefix=/opt/arm --with-shared --without-debug --without-ada --enable-overwrite
+make install
+
+echo "Configuring and making libopenssl"
+cd ../
+cd /opt/arm/openssl-1.0.1j
+./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/opt/arm shared os/compiler:arm-none-linux-gnueabi
+make install
