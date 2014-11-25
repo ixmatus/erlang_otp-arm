@@ -48,3 +48,4 @@ RUN cd otp && make install clean
 RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf --without-odbc
 RUN cd otp && ./otp_build boot -a
 RUN cd otp && ./otp_build release -a /opt/arm/lib/erlang
+RUN /opt/arm/lib/erlang/Install -minimal /opt/arm/lib/erlang
