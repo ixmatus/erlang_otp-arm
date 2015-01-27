@@ -49,3 +49,6 @@ RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcom
 RUN cd otp && ./otp_build boot -a
 RUN cd otp && ./otp_build release -a /opt/arm/lib/erlang
 RUN /opt/arm/lib/erlang/Install -minimal /opt/arm/lib/erlang
+
+# Dialyze OTP
+RUN dialyzer --build_plt --output_plt /opt/arm/dialyzer_otp.plt -r /opt/arm/lib/erlang/lib/*/ebin
