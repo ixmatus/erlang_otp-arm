@@ -1,0 +1,4 @@
+#!/bin/bash
+shopt -s extglob
+
+dialyzer --build_plt --quiet --output_plt /opt/arm/dialyzer_otp.plt -r /opt/arm/lib/erlang/lib/!(eunit*)/ebin
