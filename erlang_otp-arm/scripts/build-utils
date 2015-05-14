@@ -13,5 +13,11 @@ make install
 echo "Configuring and making libopenssl"
 cd ../
 cd /opt/arm/openssl-1.0.1j
-./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/opt/arm shared os/compiler:arm-none-linux-gnueabi
+./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/opt/arm no-shared os/compiler:arm-linux-gnueabi-gcc
+make install
+
+echo "Configuring and making libsodium"
+cd ../
+cd /opt/arm/libsodium-1.0.3
+CFLAGS='-Os' LDFLAGS='--specs=nosys.specs' ./configure --host=arm-linux-gnueabi --prefix=/opt/arm
 make install
