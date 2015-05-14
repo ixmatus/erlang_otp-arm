@@ -24,6 +24,7 @@ WORKDIR /opt/arm
 # Download libraries
 RUN curl http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz | tar zx
 RUN curl https://www.openssl.org/source/openssl-1.0.1j.tar.gz | tar zx
+RUN curl https://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz | tar zx
 
 ADD ./erlang_otp-arm /erlang_otp-arm
 
