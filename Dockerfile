@@ -1,22 +1,14 @@
-FROM ubuntu:15.04
+FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.15
 
 MAINTAINER Parnell Springmeyer <parnell@plumlife.com>
 
 # Update our sources
-RUN apt-get update && apt-get install -y \
-    gcc-arm-linux-gnueabi \
-    g++-arm-linux-gnueabi \
-    gcc \
-    g++ \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
     git \
     curl \
     libssl-dev \
     autoconf \
     make
-
-# Set locale encoding
-RUN locale-gen en_US.UTF-8
-RUN update-locale LANG=en_US.UTF-8
 
 RUN mkdir -p /opt/arm
 WORKDIR /opt/arm
@@ -44,6 +36,8 @@ RUN cd otp && ./otp_build autoconf
 RUN cd otp && ./otp_build configure
 RUN cd otp && ./otp_build boot
 RUN cd otp && make install clean
+
+ADD ./config /erlang_otp-arm/config
 
 # Build the ARM version now
 RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf --without-odbc

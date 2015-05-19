@@ -1,5 +1,6 @@
 #!/bin/bash
-export CROSS=arm-linux-gnueabi
+export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH
+export CROSS=arm-plum-linux-gnueabi
 export CC=${CROSS}-gcc
 export LD=${CROSS}-ld
 export AS=${CROSS}-as
