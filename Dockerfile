@@ -40,10 +40,10 @@ RUN cd otp && make install clean
 ADD ./config /erlang_otp-arm/config
 
 # Build the ARM version now
-RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf --without-odbc
-RUN cd otp && ./otp_build boot -a
-RUN cd otp && ./otp_build release -a /opt/arm/lib/erlang
-RUN /opt/arm/lib/erlang/Install -minimal /opt/arm/lib/erlang
+# RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf
+# RUN cd otp && ./otp_build boot -a
+# RUN cd otp && ./otp_build release -a /opt/arm/lib/erlang
+# RUN /opt/arm/lib/erlang/Install -minimal /opt/arm/lib/erlang
 
 # Dialyze OTP
-RUN /erlang_otp-arm/scripts/build-plt
+# RUN /erlang_otp-arm/scripts/build-plt
