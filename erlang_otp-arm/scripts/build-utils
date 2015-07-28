@@ -13,7 +13,7 @@ make install
 
 echo "Configuring and making libopenssl"
 cd ../
-cd /opt/arm/openssl-1.0.1j
+cd /opt/arm/openssl-1.0.2d
 ./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/opt/arm no-shared os/compiler:arm-linux-gnueabi-gcc
 make install
 

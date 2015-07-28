@@ -15,7 +15,7 @@ WORKDIR /opt/arm
 
 # Download libraries
 RUN curl http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz | tar zx
-RUN curl https://www.openssl.org/source/openssl-1.0.1j.tar.gz | tar zx
+RUN curl https://www.openssl.org/source/openssl-1.0.2d.tar.gz | tar zx
 RUN curl https://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz | tar zx
 
 ADD ./erlang_otp-arm /erlang_otp-arm
@@ -23,7 +23,7 @@ ADD ./erlang_otp-arm /erlang_otp-arm
 RUN /erlang_otp-arm/scripts/build-utils
 
 RUN rm -rf ncurses-5.9
-RUN rm -rf openssl-1.0.1j
+RUN rm -rf openssl-1.0.2d
 
 # Clone and checkout OTP
 RUN git clone https://github.com/erlang/otp.git
@@ -40,10 +40,10 @@ RUN cd otp && make install clean
 ADD ./config /erlang_otp-arm/config
 
 # Build the ARM version now
-RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf
-RUN export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH && cd otp && ./otp_build boot -a
-RUN export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH && cd otp && ./otp_build release -a /opt/arm/lib/erlang
-RUN /opt/arm/lib/erlang/Install -minimal /opt/arm/lib/erlang
+#RUN cd otp && ./otp_build configure --xcomp-conf=/erlang_otp-arm/config/erl-xcomp-arm-linux.conf
+#RUN export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH && cd otp && ./otp_build boot -a
+#RUN export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH && cd otp && ./otp_build release -a /opt/arm/lib/erlang
+#RUN /opt/arm/lib/erlang/Install -minimal /opt/arm/lib/erlang
 
 # Dialyze OTP
-RUN /erlang_otp-arm/scripts/build-plt
+#RUN /erlang_otp-arm/scripts/build-plt
