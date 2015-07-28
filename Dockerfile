@@ -27,7 +27,7 @@ RUN rm -rf openssl-1.0.1j
 
 # Clone and checkout OTP
 RUN git clone https://github.com/erlang/otp.git
-RUN cd otp && git checkout OTP-17.5.2
+RUN cd otp && git checkout OTP-17.5.6.2
 
 RUN apt-get install -y libncurses5-dev
 
