@@ -1,4 +1,4 @@
-FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.15
+FROM plumlife/crosstool-ng:gcc-4.9_eglibc-2.20
 
 MAINTAINER Parnell Springmeyer <parnell@plumlife.com>
 
