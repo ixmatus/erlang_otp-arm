@@ -33,7 +33,7 @@ RUN apt-get install -y libncurses5-dev
 
 # Build the x86 version first
 RUN cd otp && ./otp_build autoconf
-RUN cd otp && ./otp_build configure
+RUN cd otp && ./otp_build configure --enable-dirty-schedulers
 RUN cd otp && ./otp_build boot
 RUN cd otp && make install clean
 
