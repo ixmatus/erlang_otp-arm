@@ -31,11 +31,16 @@ RUN cd otp && git checkout OTP-17.5.6.2
 
 RUN apt-get install -y libncurses5-dev
 
+# Force the Erlang host to pickup the newer libcrypto
+RUN rm -f /usr/lib/libcrypto.so && ln -s /usr/local/ssl/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so
+
 # Build the x86 version first
 RUN cd otp && ./otp_build autoconf
-RUN cd otp && ./otp_build configure --enable-dirty-schedulers
+RUN cd otp && LDFLAGS="-L/usr/local/ssl/lib -lcrypto" ./otp_build configure --enable-dirty-schedulers --disable-hipe
 RUN cd otp && ./otp_build boot
 RUN cd otp && make install clean
+
+RUN rm -f /usr/lib/libcrypto.so && ln -s /usr/lib/libcrypto.so.0.9.8 /usr/lib/libcrypto.so
 
 ADD ./config /erlang_otp-arm/config
 
