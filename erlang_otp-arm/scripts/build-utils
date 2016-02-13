@@ -1,15 +1,5 @@
 #!/bin/bash
 
-
-echo "Configuring and making host libssl"
-cd ../
-cd /opt/arm/openssl-1.0.2d
-./config shared
-make install
-
-echo "Adding to the ld path"
-ldconfig /usr/local/ssl/lib
-
 export PATH=/root/x-tools/arm-plum-linux-gnueabi/bin:$PATH
 export CROSS=arm-plum-linux-gnueabi
 export CC=${CROSS}-gcc
@@ -20,19 +10,22 @@ export AR=${CROSS}-ar
 echo "Configuring and making cross libncurses"
 cd /opt/arm/ncurses-5.9
 ./configure arm-linux --target=arm-linux --host=x86_64-linux-gnu --with-build-cc=gcc --prefix=/opt/arm --with-shared --without-debug --without-ada --enable-overwrite
+make -j8
 make install
 
 echo "Configuring and making cross libssl"
 cd ../
 cd /opt/arm/openssl-1.0.2d
-make clean
 ./Configure -DOPENSSL_NO_HEARTBEATS --openssldir=/opt/arm no-shared os/compiler:arm-linux-gnueabi-gcc
+make -j8
 make install
 
 export CFLAGS='-Os '
 
 echo "Configuring and making cross libsodium"
 cd ../
-cd /opt/arm/libsodium-1.0.3
+cd /opt/arm/libsodium-1.0.8
+make clean
 ./configure --host=arm-linux-gnueabi --prefix=/opt/arm
+make -j8
 make install
