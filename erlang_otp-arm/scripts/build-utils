@@ -24,7 +24,7 @@ export CFLAGS='-Os '
 
 echo "Configuring and making cross libsodium"
 cd ../
-cd /opt/arm/libsodium-1.0.8
+cd /opt/arm/libsodium-1.0.3
 make clean
 ./configure --host=arm-linux-gnueabi --prefix=/opt/arm
 make -j8
