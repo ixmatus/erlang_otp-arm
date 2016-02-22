@@ -21,7 +21,7 @@ RUN curl http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz | tar zx && curl 
 RUN curl https://www.kernel.org/pub/software/scm/git/git-2.4.1.tar.gz | tar zx --no-same-owner && apt-get update && apt-get install --fix-missing -y libcurl4-openssl-dev gettext wpasupplicant && cd git-2.4.1 && ./configure --without-tcltk  && make && make install && cd ../ && rm -rf git-2.4.1
 
 # Build libsodium for the host
-RUN cd libsodium-1.0.8 && ./configure && make && make install
+RUN cd libsodium-1.0.3 && ./configure && make && make install
 
 # Clone and checkout OTP
 RUN git clone https://github.com/erlang/otp.git && cd otp && git checkout OTP-17.5.6.2
