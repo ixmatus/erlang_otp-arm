@@ -15,7 +15,7 @@ RUN mkdir -p /opt/arm
 WORKDIR /opt/arm
 
 # Download libraries
-RUN curl http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz | tar zx && curl https://openssl.org/source/old/1.0.2/openssl-1.0.2d.tar.gz | tar zx && curl https://download.libsodium.org/libsodium/releases/libsodium-1.0.8.tar.gz | tar zx
+RUN curl http://ftp.gnu.org/pub/gnu/ncurses/ncurses-5.9.tar.gz | tar zx && curl https://openssl.org/source/old/1.0.2/openssl-1.0.2d.tar.gz | tar zx && curl https://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz | tar zx
 
 # Build a newer version of git, for fuck's sake
 RUN curl https://www.kernel.org/pub/software/scm/git/git-2.4.1.tar.gz | tar zx --no-same-owner && apt-get update && apt-get install --fix-missing -y libcurl4-openssl-dev gettext wpasupplicant && cd git-2.4.1 && ./configure --without-tcltk  && make && make install && cd ../ && rm -rf git-2.4.1
